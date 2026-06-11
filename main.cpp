@@ -1,28 +1,3 @@
-// =============================================================
-//  main.cpp  —  SHARED (everyone's files plug in here)
-//
-//  Owns:
-//    - display()    : calls all three parts
-//    - reshape()    : Lab 2-8  glFrustum projection
-//    - update()     : Lab 4    idle animation loop
-//    - keyboard()   : EXTRA    all controls
-//    - main()       : initialises everything and starts GLUT
-//
-//  Controls:
-//    w/s       move heli forward / back
-//    a/d       move heli left / right
-//    q/e       move heli up / down
-//    j/l       rotate camera left / right
-//    i/k       raise / lower camera
-//    +/-       zoom in / out
-//    1/0       white light  ON / OFF
-//    7/8       warm light   ON / OFF
-//    t         toggle textures
-//    c         toggle backface culling
-//    r         reset after crash
-//    Esc       quit
-// =============================================================
-
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -37,7 +12,6 @@
 #include "scene.h"
 #include "lighting.h"
 
-// =============================================================
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -53,14 +27,13 @@ void display()
     helicopter();       // helicopter.cpp — Lab 3,4,5
 
     if(crashed){
-        drawDebris();   // helicopter.cpp — EXTRA
-        drawFire();     // helicopter.cpp — EXTRA
+        drawDebris();   // helicopter.cpp
+        drawFire();     // helicopter.cpp
     }
 
     glutSwapBuffers();
 }
 
-// Lab 2-8: teacher used glFrustum for perspective
 void reshape(int w, int h)
 {
     if(h==0) h=1;
@@ -72,7 +45,6 @@ void reshape(int w, int h)
     glMatrixMode(GL_MODELVIEW);
 }
 
-// Lab 4: idle loop for animation + EXTRA physics
 void update()
 {
     updateParticles();   // helicopter.cpp
@@ -108,7 +80,29 @@ void keyboard(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
-// =============================================================
+//  main.cpp  —  everyone's files plug in here
+//
+//  Owns:
+//    - display()    : calls all three parts
+//    - reshape()    : glFrustum projection
+//    - update()     : idle animation loop
+//    - keyboard()   : all controls
+//    - main()       : initialises everything and starts GLUT
+//
+//  Controls:
+//    w/s       move heli forward / back
+//    a/d       move heli left / right
+//    q/e       move heli up / down
+//    j/l       rotate camera left / right
+//    i/k       raise / lower camera
+//    +/-       zoom in / out
+//    1/0       white light  ON / OFF
+//    7/8       warm light   ON / OFF
+//    t         toggle textures
+//    c         toggle backface culling
+//    r         reset after crash
+//    Esc       quit
+
 int main(int argc, char** argv)
 {
     glutInit(&argc,argv);

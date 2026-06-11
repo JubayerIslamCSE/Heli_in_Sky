@@ -1,13 +1,9 @@
-// =============================================================
-//  scene.cpp  —  PERSON 2 (Scene / Environment)
-//
-//  Owns:
-//    - initTextures()   : Lab 8  procedural brick + grass textures
-//    - drawGround()     : Lab 8  textured ground quad
-//    - drawBuildings()  : Lab 3  5 buildings using transforms
-//    - setupCamera()    : Lab 6  gluLookAt orbiting camera
-//    - camAngle/Height  : EXTRA  interactive camera controls
-// =============================================================
+
+//    initTextures()   : Lab 8  procedural brick + grass textures
+//    drawGround()     : Lab 8  textured ground quad
+//    drawBuildings()  : Lab 3  5 buildings using transforms
+//    setupCamera()    : Lab 6  gluLookAt orbiting camera
+//    camAngle/Height  : EXTRA  interactive camera controls
 
 #ifdef _WIN32
 #include <windows.h>
@@ -35,9 +31,7 @@ bool useCulling = true;
 static unsigned int groundTex = 0;
 static unsigned int brickTex  = 0;
 
-// =============================================================
 //  Lab 8 : procedural textures (no image files needed)
-// =============================================================
 static unsigned int makeChecker(int r1,int g1,int b1,
                                 int r2,int g2,int b2)
 {
@@ -91,9 +85,7 @@ void initTextures()
     brickTex  = makeBrick();
 }
 
-// =============================================================
 //  Lab 8 : textured ground
-// =============================================================
 void drawGround()
 {
     glColor3f(1,1,1);
@@ -108,9 +100,7 @@ void drawGround()
     glDisable(GL_TEXTURE_2D);
 }
 
-// =============================================================
 //  Lab 3 : buildings using transforms
-// =============================================================
 struct Building { float x,z,w,d,h; };
 static Building buildings[] = {
     {0.0f, 0.0f, 1.6f, 1.6f, 3.5f},
@@ -143,9 +133,7 @@ void drawBuildings()
     for (int i=0;i<5;i++) drawOneBuilding(buildings[i]);
 }
 
-// =============================================================
 //  Lab 6 : camera setup with gluLookAt
-// =============================================================
 void setupCamera()
 {
     float camX = camRadius * cosf(camAngle*3.1416f/180.0f);
